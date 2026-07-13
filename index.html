@@ -825,6 +825,12 @@ function zLayer(prov,pre){return {name:(pre||'')+'SoVIz ('+prov+')',
  color:function(d){return d.prov===prov?zColor(d.zprov):'#f5f5f5'},
  legend:function(){return Z_LEGEND},
  info:function(d){return d.prov===prov?('SoVI z-score (มาตรฐานภายใน จ.'+prov+') = <b>'+d.zprov.toFixed(2)+'</b>'):('นอกจังหวัด'+prov+' · SoVI = '+d.sovi.toFixed(4))}};}
+/* ===== Biplot-matching SoVI colormap (RdYlBu_r, symmetric about 0) — identical scale to
+   SoVI_PCA_Biplot_Chan_Rayong.png : cmap='RdYlBu_r', vmin=-max|SoVI|, vmax=+max|SoVI| ===== */
+var RDYLBU_R=[[49,54,149],[69,117,180],[116,173,209],[171,217,233],[224,243,248],[255,255,191],[254,224,144],[253,174,97],[244,109,67],[215,48,39],[165,0,38]];
+var SOVI_M=2.7982; // = max|SoVI| across all 134 tambons (ต.หนองละลอก)
+function biplotColor(v){var t=(v+SOVI_M)/(2*SOVI_M);if(t<0)t=0;if(t>1)t=1;var x=t*(RDYLBU_R.length-1),i=Math.floor(x),f=x-i;if(i>=RDYLBU_R.length-1){i=RDYLBU_R.length-2;f=1;}var a=RDYLBU_R[i],b=RDYLBU_R[i+1];return 'rgb('+Math.round(a[0]+(b[0]-a[0])*f)+','+Math.round(a[1]+(b[1]-a[1])*f)+','+Math.round(a[2]+(b[2]-a[2])*f)+')';}
+function biplotLegend(){return [[biplotColor(2.8),'SoVI ≈ +2.8 · เปราะบางสูงสุด'],[biplotColor(1.5),'+1.5'],[biplotColor(0.5),'+0.5'],[biplotColor(-0.5),'−0.5'],[biplotColor(-1.5),'−1.5'],[biplotColor(-2.58),'≈ −2.6 · เปราะบางต่ำสุด'],['#f5f5f5','นอกพื้นที่ชั้นข้อมูล']];}
 var LAYERS={
  cluster:{name:'⑤ LISA cluster (Local Moran\'s I)',
    color:function(d){return CLC[d.cl]},
@@ -839,7 +845,10 @@ var LAYERS={
    legend:function(){return Z_LEGEND.slice(0,5)},
    info:function(d){return 'SoVI z-score (มาตรฐานรวม 134 ตำบล) = <b>'+d.zall.toFixed(2)+'</b>'}},
  soviz_chan: zLayer('จันทบุรี','① '),
- soviz_rayong: zLayer('ระยอง','② '),
+ soviz_rayong:{name:'② SoVI (ระยอง) — สเกลเดียวกับ biplot',
+   color:function(d){return d.prov==='ระยอง'?biplotColor(d.sovi):'#f5f5f5'},
+   legend:biplotLegend,
+   info:function(d){return d.prov==='ระยอง'?('SoVI (z, pooled 134 ตำบล) = <b>'+d.sovi.toFixed(3)+'</b> · '+d.level):('นอกจังหวัดระยอง · SoVI = '+d.sovi.toFixed(4))}},
 };
 
 
