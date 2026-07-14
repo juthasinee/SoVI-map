@@ -840,7 +840,7 @@ var LAYERS={
    legend:function(){return Z_LEGEND.slice(0,5)},
    info:function(d){return 'SoVI z-score (มาตรฐานรวม 134 ตำบล) = <b>'+d.zall.toFixed(2)+'</b>'}},
  soviz_chan: zLayer('จันทบุรี','① '),
- soviz_rayong:{name:'② SoVI (ระยอง) — PCA เฉพาะ 58 ตำบล (ตามรายงาน)',
+ soviz_rayong:{name:'② SoVIz (ระยอง)',
    color:function(d){return d.prov==='ระยอง'?(RYCLASS_COLOR[d.rycls]||'#f5f5f5'):'#f5f5f5'},
    legend:function(){return Z_LEGEND},
    info:function(d){return d.prov==='ระยอง'?('SoVI (z, PCA ระยอง 58 ตำบล) = <b>'+d.ryz.toFixed(2)+'</b> · '+d.rycls_th+' · อันดับ '+d.ryrank+'/58'):('นอกจังหวัดระยอง')}},
