@@ -11,3 +11,9 @@ provinces, Thailand.
 
 Boundaries: Thailand COD-AB tambon (github.com/prasertcbs/thailand_gis).
 Analysis computed 11 July 2026. Single-file app; open `index.html` or view via GitHub Pages.
+
+## ปรับปรุง 1 ตุลาคม 2569
+- คงชั้นข้อมูลฉบับเบื้องต้น ①–⑤ (11 ก.ค. 2569) ไว้ทั้งหมด
+- เพิ่มชั้น ⑥ SoVI ทางการ 2567 (แบบจำลองรวม 134 ตำบล) และ ⑦ คลัสเตอร์ LISA ทางการ จากรายงานความก้าวหน้าครั้งที่ 2 ตอนที่ 1
+- เพิ่มชั้น ⑧ จุดสำรวจภาคสนาม CR1–CR10 (16–19 ก.ค. 2569) พร้อมภาพถ่าย (img/field)
+- ป๊อปอัปและตารางแสดงค่าทั้งสองฉบับ; คลังภาพเพิ่มแผนที่ฉบับทางการ (img/maps)
